@@ -56,3 +56,4 @@ def monitor(request):
 	# html = "<html><body>Hello {} with {} followers.</body></html>".format(2,4)
 	return HttpResponse(json_response) 
 
+

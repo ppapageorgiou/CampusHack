@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.signals import post_save
 
 class HashTag(models.Model):
 	'''
@@ -24,3 +25,28 @@ class Tweet(models.Model):
 	
 	def __unicode__(self):
 		return self.tweet
+
+# class Achievement(models.Model):
+# 	'''
+# 	This is the model for an Achievement.  We queue rewards to be given out to the winners.
+# 	'''
+
+# 	hash_tag  = models.ForeignKey(HashTag, related_name="tags")
+# 	winner    = models.CharField(max_length=50)
+# 	url     = models.CharField(max_length=200)
+	
+# 	def __unicode__(self):
+# 		return self.url
+
+def find_achievements(**kwargs):
+	"""
+	Analyse tweets and decide whether to give new achievements.
+	"""
+	if kwargs['created']:
+		all_tweets = Tweet.objects.all()
+		counter = Tweet.objects.all().count()
+		if counter == 5:
+			# create an achievement
+			pass
+
+models.signals.post_save.connect(find_achievements, sender=Tweet)
