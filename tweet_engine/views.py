@@ -1,6 +1,6 @@
 # Dependencies: pip install tweepy
 from django.http import HttpResponse
-import tweepy
+import tweepy, json
 from models import *
 
 consumer_key = 'anCzDqH0g9Qxv46h8ecRhQ'
@@ -49,6 +49,10 @@ def listener(request):
 	return HttpResponse(html) 
 
 def monitor(request):
-	html = "<html><body>Hello {} with {} followers.</body></html>".format(2,4)
-	return HttpResponse(html) 
+	json_response = json.dumps({
+		'text':'tweet.text', 
+		'retweet_count': 23,
+		})
+	# html = "<html><body>Hello {} with {} followers.</body></html>".format(2,4)
+	return HttpResponse(json_response) 
 
