@@ -20,7 +20,7 @@ class Tweet(models.Model):
 	can count them and use their sender to offer rewards.
 	'''
 
-	hash_tag  				= models.ForeignKey(HashTag, related_name="tags")
+	hash_tag  				= models.ForeignKey(HashTag, related_name="tweets")
 	sender    				= models.CharField(max_length=50)
 	tweet     				= models.CharField(max_length=200)
 	created_at 				= models.DateTimeField(default=datetime.now())
@@ -38,7 +38,7 @@ class Achievement(models.Model):
 	This is the model for an Achievement.  We queue rewards to be given out to the winners.
 	'''
 
-	hash_tag  			= models.ForeignKey(HashTag, related_name="+")
+	hash_tag  			= models.ForeignKey(HashTag, related_name="achievements")
 	winner    			= models.CharField(max_length=50)
 	reason 				= models.CharField(max_length=300)
 	url 				= models.CharField(max_length=200)

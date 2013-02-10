@@ -1,5 +1,6 @@
 # Dependencies: pip install tweepy
 from django.http import HttpResponse
+from django.core.exceptions import ObjectDoesNotExist
 import tweepy, json
 from models import *
 
@@ -15,7 +16,10 @@ auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
 #Get HashTag from database
-hash_tag = True
+try:
+    hash_tag = HashTag.objects.get(pk=1)
+except ObjectDoesNotExist:
+    print("A hashtag doesn't exist.")
 
 class CustomStreamListener(tweepy.StreamListener):
     def on_status(self, status):
@@ -39,7 +43,6 @@ class CustomStreamListener(tweepy.StreamListener):
 
 # Create your views here.
 def listener(request):
-	hash_tag = HashTag.objects.get(pk=1)
 	sapi = tweepy.streaming.Stream(auth, CustomStreamListener())
 	sapi.filter(track=[hash_tag])
 
