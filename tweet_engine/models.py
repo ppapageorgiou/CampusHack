@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 from django.db.models.signals import post_save
 
 class HashTag(models.Model):
@@ -19,15 +20,16 @@ class Tweet(models.Model):
 	can count them and use their sender to offer rewards.
 	'''
 
-	hash_tag  = models.ForeignKey(HashTag, related_name="tags")
-	sender    = models.CharField(max_length=50)
-	tweet     = models.CharField(max_length=200)
-	# created_at = models.CharField(max_length=100)
-	# entities = models.CharField(max_length=1000)
-	# tweet_id_str = models.CharField(max_length=100)
-	# in_reply_to_screen_name = models.CharField(max_length=100)
-	# retweet_count = models.CharField(max_length=50)
-	# coordinates = models.CharField(max_length=50)
+	hash_tag  				= models.ForeignKey(HashTag, related_name="tags")
+	sender    				= models.CharField(max_length=50)
+	tweet     				= models.CharField(max_length=200)
+	created_at 				= models.DateTimeField(default=datetime.now())
+	entities 				= models.TextField()
+	tweet_id_str 			= models.CharField(max_length=100)
+	in_reply_to_screen_name = models.CharField(max_length=100)
+	retweet_count 			= models.IntegerField(default=0)
+	coordinates 			= models.CharField(max_length=50)
+
 	def __unicode__(self):
 		return self.tweet
 
