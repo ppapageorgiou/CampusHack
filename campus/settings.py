@@ -148,3 +148,9 @@ LOGGING = {
         },
     }
 }
+
+#This try/except block ensures that local settings are imported in the case of local environment 
+try:
+    from local_settings import *
+except ImportError, e:
+    print 'Unable to load local_settings.py:', e
