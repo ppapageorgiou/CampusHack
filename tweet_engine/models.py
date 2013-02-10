@@ -33,18 +33,21 @@ class Tweet(models.Model):
 	def __unicode__(self):
 		return self.tweet
 
-# class Achievement(models.Model):
-# 	'''
-# 	This is the model for an Achievement.  We queue rewards to be given out to the winners.
-# 	'''
+class Achievement(models.Model):
+	'''
+	This is the model for an Achievement.  We queue rewards to be given out to the winners.
+	'''
 
-# 	hash_tag  = models.ForeignKey(HashTag, related_name="tags")
-# 	winner    = models.CharField(max_length=50)
-#	reason = models.CharField(max_length=200)
-# 	url     = models.CharField(max_length=200)
+	hash_tag  			= models.ForeignKey(HashTag, related_name="htags")
+	winner    			= models.CharField(max_length=50)
+	reason 				= models.CharField(max_length=300)
+	url 				= models.CharField(max_length=200)
+	img 				= models.CharField(max_length=200)
+	discount_string 	= models.CharField(max_length=50)
+	reward_name			= models.CharField(max_length=200)
 	
-# 	def __unicode__(self):
-# 		return self.url
+	def __unicode__(self):
+		return self.url
 
 def find_achievements(**kwargs):
 	"""
