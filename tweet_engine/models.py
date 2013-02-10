@@ -57,12 +57,13 @@ def find_achievements(**kwargs):
 		all_tweets = Tweet.objects.all()
 		counter = Tweet.objects.all().count()
 		if counter == 5:
+			reason = "Hashtag reached 5 tweets"
 			# create an achievement
 			a = Achievement()
 			a.hash_tag = kwargs['instance'].hash_tag
 			a.winner = kwargs['instance'].sender
-			a.reason = "Hashtag reached 5 tweets"
+			a.reason = reason
 			a.save()
-			pass
+			print reason
 
 models.signals.post_save.connect(find_achievements, sender=Tweet)
