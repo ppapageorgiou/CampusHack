@@ -15,10 +15,7 @@ auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
 #Get HashTag from database
-hash_tag = HashTag.objects.get(pk=1)
-
-# # Get the User object for twitter...
-# user = api.get_user('avocarrot')
+hash_tag = True
 
 class CustomStreamListener(tweepy.StreamListener):
     def on_status(self, status):
@@ -42,6 +39,7 @@ class CustomStreamListener(tweepy.StreamListener):
 
 # Create your views here.
 def listener(request):
+	hash_tag = HashTag.objects.get(pk=1)
 	sapi = tweepy.streaming.Stream(auth, CustomStreamListener())
 	sapi.filter(track=[hash_tag])
 
