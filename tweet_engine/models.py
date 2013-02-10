@@ -22,7 +22,12 @@ class Tweet(models.Model):
 	hash_tag  = models.ForeignKey(HashTag, related_name="tags")
 	sender    = models.CharField(max_length=50)
 	tweet     = models.CharField(max_length=200)
-	
+	# created_at = models.CharField(max_length=100)
+	# entities = models.CharField(max_length=1000)
+	# tweet_id_str = models.CharField(max_length=100)
+	# in_reply_to_screen_name = models.CharField(max_length=100)
+	# retweet_count = models.CharField(max_length=50)
+	# coordinates = models.CharField(max_length=50)
 	def __unicode__(self):
 		return self.tweet
 
@@ -33,6 +38,7 @@ class Tweet(models.Model):
 
 # 	hash_tag  = models.ForeignKey(HashTag, related_name="tags")
 # 	winner    = models.CharField(max_length=50)
+#	reason = models.CharField(max_length=200)
 # 	url     = models.CharField(max_length=200)
 	
 # 	def __unicode__(self):
